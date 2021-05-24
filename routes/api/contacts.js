@@ -12,7 +12,15 @@ router.get('/', async (req, res, next) => {
 })
 
 router.get('/:id', async (req, res, next) => {
-  res.json({ message: 'template message' })
+  try {
+    const contact = await Contacts.getContactById(req.params.id)
+    if (contact){
+return res.json({ status: 'success', code: 200, data: { contact } })
+    }
+    return res.json({ status: 'error', code: 404, message: 'Not Found' })
+  } catch (e) {
+    next(e)
+  }
 })
 
 router.post('/', async (req, res, next) => {
