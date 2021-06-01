@@ -23,7 +23,7 @@ name: {
   }
 )
  
-const Contact = model('contact', contactSchema)
+const Contact = model('contacts', contactSchema) // из за этого тоже не работало б
+// так как в бд название contacts а было написано contact оно бы не видело б ее
 
     module.exports = Contact
-  

@@ -2,7 +2,7 @@ const Contact = require('./contact')
 
 
 const listContacts = async () => {
-  const results = await Contact.find()
+  const results = await Contact.find({})
   return results
 }
 

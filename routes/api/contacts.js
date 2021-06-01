@@ -1,12 +1,13 @@
 const express = require('express')
 const router = express.Router()
-const Contacts = require('../../model')
+const Contacts = require('../../model/contacts')
 const {validationAddContact, validationUpdateContact} = require('./validation')
-
+console.log(Contacts.listContacts);
 // listContacts
 router.get('/', async (req, res, next) => {
   try {
-    const contacts = await Contacts.listContacts()
+    const contacts = await Contacts.listContacts // тут не надо було функции
+
     res.json({ status: 'success', code: 200, data: { contacts } })
   } catch (e) {
     next(e)
