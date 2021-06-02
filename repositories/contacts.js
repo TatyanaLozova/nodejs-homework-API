@@ -1,7 +1,7 @@
 const Contact = require('../model/contact')
 
 
-const listContacts = async () => {
+const getAll = async () => {
   const results = await Contact.find()
   return results
 }
@@ -31,7 +31,7 @@ const updateContact = async (id, body) => {
 }
 
 module.exports = {
-  listContacts,
+  getAll,
   getContactById,
   removeContact,
   addContact,
