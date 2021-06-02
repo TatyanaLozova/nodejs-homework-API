@@ -1,7 +1,6 @@
 const Contacts = require('../repositories/contacts')
 
 
-// все контакты
 const getAll = async (req, res, next) => {
   try {
     const contacts = await Contacts.getAll() 
@@ -11,7 +10,7 @@ const getAll = async (req, res, next) => {
   }
 }
 
-// getContactById
+
 const getContactById = async (req, res, next) => {
   try {
     const contact = await Contacts.getContactById(req.params.id)
@@ -24,7 +23,7 @@ return res.json({ status: 'success', code: 200, data: { contact } })
   }
 }
 
-// addContact
+
 const addContact = async (req, res, next) => {
  try {
     const contact = await Contacts.addContact(req.body)
@@ -34,7 +33,7 @@ const addContact = async (req, res, next) => {
   }
 }
 
-// removeContact
+
 const removeContact = async (req, res, next) => {
    try {
     const contact = await Contacts.removeContact(req.params.id)
