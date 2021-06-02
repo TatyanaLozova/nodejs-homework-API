@@ -2,7 +2,7 @@ const Contacts = require('../repositories/contacts')
 
 
 // все контакты
-const listContacts = async (req, res, next) => {
+const getAll = async (req, res, next) => {
   try {
     const contacts = await Contacts.listContacts() 
    return res.json({ status: 'success', code: 200, data: { contacts } })
@@ -60,7 +60,7 @@ return res.json({ status: 'success', code: 200, data: { contact } })
 }
 
 module.exports = {
-  listContacts,
+  getAll,
     getContactById,
     addContact,
     removeContact,
