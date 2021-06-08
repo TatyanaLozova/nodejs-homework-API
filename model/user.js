@@ -1,11 +1,16 @@
 const { Schema, model } = require('mongoose')
 const { Subscription } = require('../helpers/constants')
+const bcrypt = require('bcryptjs')
 
-const contactSchema = new Schema(
+const userSchema = new Schema(
 {
   password: {
     type: String,
     required: [true, 'Password is required'],
+    },
+    token: {
+    type: String,
+    default: null,
   },
   email: {
     type: String,
@@ -21,16 +26,9 @@ const contactSchema = new Schema(
     enum: [Subscription.STARTER, Subscription.PRO, Subscription.BUSINESS],
     default: Subscription.STARTER
   },
-  token: {
-    type: String,
-    default: null,
-  },
+  
 
-     owner: {
-      type: SchemaTypes.ObjectId,
-      ref: 'user',
-    }
-},
+  },
   {
     versionKey: false,
     timestamps: true,
@@ -45,9 +43,9 @@ const contactSchema = new Schema(
   }
 )
  
-const Contact = model('contacts', contactSchema)
+const User = model('user', userSchema)
 
-contactSchema.virtual("info").get(function () {
+userSchema.virtual("info").get(function () {
   return `This is contact ${this.name}`
 })
-    module.exports = Contact
+    module.exports = User
