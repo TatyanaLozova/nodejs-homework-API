@@ -31,6 +31,7 @@ const register = async (req, res, next) => {
 const login = async (req, res, next) => {
   try {
     const user = await Users.findByEmail(req.body.email)
+    const {email, subscription} = user
     const isValidPassword = await user?.isValidPassword(req.body.password)
     if (!user || !isValidPassword) {
       return res.status(HttpCode.UNAUTHORIZED).json({
@@ -41,9 +42,9 @@ const login = async (req, res, next) => {
     }
     const id = user.id
     const payload = { id }
-    const token = jwt.sign(payload, SECRET_KEY, { expiresIn: '1h' })
+    const token = jwt.sign(payload, SECRET_KEY, { expiresIn: '3h' })
     await Users.updateToken(id, token)
-    return res.json({ status: 'success', code: 200, data: { token } })
+    return res.json({ status: 'success', code: 200, data: { token, email, subscription } })
   } catch (e) {
     next(e)
   }
