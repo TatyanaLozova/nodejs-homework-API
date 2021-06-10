@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const ctrl = require('../../../controllers/contacts')
+const passport = require('passport')
+const guard = require('../')
 
 const { validationAddContact,
   validationUpdateContact,
