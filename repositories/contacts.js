@@ -43,7 +43,7 @@ const removeContact = async (userId, id) => {
   return result
 };
 
-const addContact = async (userId, id, body) => {
+const addContact = async (userId,  body) => {
    const newContact = await Contact.create({ owner: userId, ...body })
   return newContact
 }
