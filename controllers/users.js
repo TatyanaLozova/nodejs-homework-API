@@ -91,6 +91,7 @@ const avatars = async (req, res, next) => {
   }
 }
 
+// Облако
 
 // const UploadAvatarService = require('../services/cloud-upload')
 // const avatars = async (req, res, next) => {
