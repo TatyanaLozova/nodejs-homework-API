@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose')
+const gr = require('gravatar')
 const { Subscription } = require('../helpers/constants')
 const bcrypt = require('bcryptjs')
 const SALT_WORK_FACTOR = 8
@@ -9,6 +10,12 @@ const userSchema = new Schema(
   password: {
     type: String,
     required: [true, 'Password is required'],
+    },
+    avatar: {
+      type: String,
+      default: function () {
+        return gr.url(this.email, { s: '250' }, true)
+      },
     },
    
   email: {

@@ -16,12 +16,12 @@ const register = async (req, res, next) => {
       })
     }
 
-    const { id, email, subscription } = await Users.create(req.body)
+    const { id, email, subscription, avatar  } = await Users.create(req.body)
 
     return res.status(HttpCode.CREATED).json({
       status: 'success',
       code: HttpCode.CREATED,
-      data: { id, email, subscription },
+      data: { id, email, subscription, avatar  },
     })
   } catch (e) {
     next(e)
@@ -62,4 +62,8 @@ const logout = async (req, res, next) => {
   }
 }
 
-module.exports = { register, login, logout }
+const avatars = async (req, res, next) => {
+  res.json({ message: 'Done' })
+}
+
+module.exports = { register, login, logout, avatars }
