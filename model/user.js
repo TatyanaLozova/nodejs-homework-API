@@ -2,6 +2,8 @@ const { Schema, model } = require('mongoose')
 const gr = require('gravatar')
 const { Subscription } = require('../helpers/constants')
 const bcrypt = require('bcryptjs')
+const { nanoid } = require('nanoid')
+
 const SALT_WORK_FACTOR = 8
 
 
@@ -35,7 +37,18 @@ const userSchema = new Schema(
    token: {
     type: String,
     default: null,
-  },
+    },
+    idCloudAvatar: {
+      type: String,
+      default: null,
+    },
+   
+   isVerified: { type: Boolean, default: false },
+    verifyToken: {
+      type: String,
+      required: true,
+      default: nanoid(),
+    },
 
   },
   {
