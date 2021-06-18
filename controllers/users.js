@@ -3,7 +3,13 @@ const { HttpCode } = require('../helpers/constants')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 const fs = require('fs/promises')
-
+const EmailService = require('../services/email')
+const Users = require('../repositories/users')
+const { HttpCode } = require('../helpers/constants')
+const {
+  CreateSenderNodemailer,
+  CreateSenderSendGrid,
+} = require('../services/email-sender')
 const SECRET_KEY = process.env.SECRET_KEY
 
 
@@ -21,6 +27,15 @@ const register = async (req, res, next) => {
     }
 
     const { id, email, subscription, avatar, verifyToken } = await Users.create(req.body)
+     try {
+      const emailService = new EmailService(
+        process.env.NODE_ENV,
+        new CreateSenderSendGrid(),
+      )
+      await emailService.sendVerifyEmail(verifyToken, email, name)
+    } catch (error) {
+      console.log(error.message)
+    }
 
     return res.status(HttpCode.CREATED).json({
       status: 'success',
