@@ -6,13 +6,13 @@ class EmailService {
     this.sender = sender
     switch (env) {
       case 'development':
-        this.link = 'https://887587af97b6.ngrok.io'
+        this.link = 'http://localhost:3000'
         break
       case 'production':
         this.link = 'link fro production'
         break
       default:
-        this.link = 'https://887587af97b6.ngrok.io'
+        this.link = 'http://localhost:3000'
         break
     }
   }
@@ -32,7 +32,7 @@ class EmailService {
         action: {
           instructions: 'To get started with Summer, please click here:',
           button: {
-            color: '#22BC66', // Optional action button color
+            color: '#22BC66', 
             text: 'Confirm your account',
             link: `${this.link}/api/users/verify/${verifyToken}`,
           },
