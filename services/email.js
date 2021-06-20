@@ -18,7 +18,7 @@ class EmailService {
   }
   #createTemplateVerificationEmail(verifyToken, name) {
     const mailGenerator = new Mailgen({
-      theme: 'weather',
+      theme: 'cerberus',
       product: {
         name: 'Summer',
         link: this.link,
