@@ -1,5 +1,3 @@
-const Users = require('../repositories/users')
-const { HttpCode } = require('../helpers/constants')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 const fs = require('fs/promises')
@@ -7,8 +5,7 @@ const EmailService = require('../services/email')
 const Users = require('../repositories/users')
 const { HttpCode } = require('../helpers/constants')
 const {
-  CreateSenderNodemailer,
-  CreateSenderSendGrid,
+    CreateSenderSendGrid,
 } = require('../services/email-sender')
 const SECRET_KEY = process.env.SECRET_KEY
 
@@ -32,6 +29,7 @@ const register = async (req, res, next) => {
         process.env.NODE_ENV,
         new CreateSenderSendGrid(),
       )
+      // eslint-disable-next-line no-undef
       await emailService.sendVerifyEmail(verifyToken, email, name)
     } catch (error) {
       console.log(error.message)

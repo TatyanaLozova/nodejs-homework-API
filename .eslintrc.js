@@ -5,8 +5,10 @@ module.exports = {
     node: true,
   },
   extends: ['standard', 'plugin:json/recommended', 'prettier'],
+   plugins: ['@babel'],
   parserOptions: {
     ecmaVersion: 12,
   },
   rules: {},
+   
 }
